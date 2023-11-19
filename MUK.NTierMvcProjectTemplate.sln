@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34031.279
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MUK.NTierMvcProjectTemplate.Web", "MUK.NTierMvcProjectTemplate.Web\MUK.NTierMvcProjectTemplate.Web.csproj", "{78D7BF9F-65FB-41AF-9FC4-1084EB79F053}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MUK.NTierMvcProjectTemplate.BL", "MUK.NTierMvcProjectTemplate.BL\MUK.NTierMvcProjectTemplate.BL.csproj", "{251DB460-7C3C-43C3-A395-837A8AEF0E01}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MUK.NTierMvcProjectTemplate.DAL", "MUK.NTierMvcProjectTemplate.DAL\MUK.NTierMvcProjectTemplate.DAL.csproj", "{FD9FC35D-B3BC-41A9-AAAE-D0B2FD1FE6A9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MUK.NTierMvcProjectTemplate.Dtos", "MUK.NTierMvcProjectTemplate.Dtos\MUK.NTierMvcProjectTemplate.Dtos.csproj", "{C78A2A31-728D-499A-8803-3AB3AA5390DE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MUK.NTierMvcProjectTemplate.Entities", "MUK.NTierMvcProjectTemplate.Entities\MUK.NTierMvcProjectTemplate.Entities.csproj", "{8B701E80-B10C-42D5-B084-4DBB8F234B26}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MUK.NTierMvcProjectTemplate.Common", "MUK.NTierMvcProjectTemplate.Common\MUK.NTierMvcProjectTemplate.Common.csproj", "{D0270DDB-1E1C-4D18-905A-372B3644E7B7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{78D7BF9F-65FB-41AF-9FC4-1084EB79F053}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78D7BF9F-65FB-41AF-9FC4-1084EB79F053}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78D7BF9F-65FB-41AF-9FC4-1084EB79F053}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78D7BF9F-65FB-41AF-9FC4-1084EB79F053}.Release|Any CPU.Build.0 = Release|Any CPU
+		{251DB460-7C3C-43C3-A395-837A8AEF0E01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{251DB460-7C3C-43C3-A395-837A8AEF0E01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{251DB460-7C3C-43C3-A395-837A8AEF0E01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{251DB460-7C3C-43C3-A395-837A8AEF0E01}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD9FC35D-B3BC-41A9-AAAE-D0B2FD1FE6A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD9FC35D-B3BC-41A9-AAAE-D0B2FD1FE6A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD9FC35D-B3BC-41A9-AAAE-D0B2FD1FE6A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD9FC35D-B3BC-41A9-AAAE-D0B2FD1FE6A9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C78A2A31-728D-499A-8803-3AB3AA5390DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C78A2A31-728D-499A-8803-3AB3AA5390DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C78A2A31-728D-499A-8803-3AB3AA5390DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C78A2A31-728D-499A-8803-3AB3AA5390DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B701E80-B10C-42D5-B084-4DBB8F234B26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B701E80-B10C-42D5-B084-4DBB8F234B26}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B701E80-B10C-42D5-B084-4DBB8F234B26}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B701E80-B10C-42D5-B084-4DBB8F234B26}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0270DDB-1E1C-4D18-905A-372B3644E7B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0270DDB-1E1C-4D18-905A-372B3644E7B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0270DDB-1E1C-4D18-905A-372B3644E7B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0270DDB-1E1C-4D18-905A-372B3644E7B7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AD265B91-412B-42DF-AFA7-917B3F0F85DC}
+	EndGlobalSection
+EndGlobal
