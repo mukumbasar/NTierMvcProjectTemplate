@@ -46,7 +46,7 @@ namespace MUK.NTierMvcProjectTemplate.BL.Managers
 				smtpClient.Send(mailMessage);
 				Console.WriteLine("başarılı");
 			}
-			catch (Exception e)
+			catch (Exception)
 			{
 				Console.WriteLine("hata");
 			}

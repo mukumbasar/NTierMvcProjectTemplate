@@ -44,7 +44,7 @@ namespace MUK.NTierMvcProjectTemplate.BL.Managers
                 byte[] tokenGeneratedBytes = Encoding.UTF8.GetBytes(token);
                 var codeEncoded = WebEncoders.Base64UrlEncode(tokenGeneratedBytes);
 
-                var url = EmailComfirmLinkGenerator(codeEncoded, registredUser.Id);
+                var url = EmailComfirmLinkGenerator(registredUser.Id, codeEncoded);
 
 				var html = $@"<html><head></head>
                         <body>
@@ -118,7 +118,7 @@ namespace MUK.NTierMvcProjectTemplate.BL.Managers
 		}
         private string EmailComfirmLinkGenerator(string userId, string token)
 		{
-			var link = "https://localhost:7185/Account/EmailActivation";
+			var link = "https://localhost:7293/Account/EmailActivation";
 
 			link += "?" + "userId=" + userId + "&token=" + token;
 

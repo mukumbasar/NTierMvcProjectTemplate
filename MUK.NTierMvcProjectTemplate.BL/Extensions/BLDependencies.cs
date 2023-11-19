@@ -12,12 +12,12 @@ namespace MUK.NTierMvcProjectTemplate.BL.Extensions
 {
 	public static class BLDepedencies
 	{
-		public static void AddBLDepecenies(this IServiceCollection services)
+		public static void AddBLDependencies(this IServiceCollection services, Assembly configFromAssembly)
 		{
-			services.AddAutoMapper(Assembly.GetExecutingAssembly());
+			services.AddAutoMapper(Assembly.GetExecutingAssembly(), configFromAssembly);
 
-			#region Custom Services
-			services.AddScoped<IEmailService, EmailManager>();
+            #region Custom Services
+            services.AddScoped<IEmailService, EmailManager>();
 			services.AddScoped<IAccountService, AccountManager>();
 			#endregion
 		}

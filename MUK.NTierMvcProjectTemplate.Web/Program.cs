@@ -1,14 +1,17 @@
 using MUK.NTierMvcProjectTemplate.Dtos.EmailConfigurations;
 using MUK.NTierMvcProjectTemplate.BL.Extensions;
 using MUK.NTierMvcProjectTemplate.DAL.Extensions;
+using FluentValidation.AspNetCore;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddBLDepecenies();
+builder.Services.AddBLDependencies(Assembly.GetExecutingAssembly());
 builder.Services.AddDALDependencies(builder.Configuration.GetConnectionString("MSSqlServer"));
+
+builder.Services.AddControllersWithViews().AddFluentValidation(v => v.RegisterValidatorsFromAssemblyContaining<Program>());
 
 builder.Services.Configure<EmailOption>(builder.Configuration.GetSection("EmailOption"));
 var app = builder.Build();

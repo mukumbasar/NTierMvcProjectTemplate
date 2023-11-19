@@ -5,9 +5,9 @@ using MUK.NTierMvcProjectTemplate.Web.Models;
 
 namespace MUK.NTierMvcProjectTemplate.Web.Mappings
 {
-    public class UserModelProfile : Profile
+    public class WebModelProfile : Profile
     {
-        public UserModelProfile()
+        public WebModelProfile()
         {
             CreateMap<RegisterViewModel, CreateAppUserDto>().ReverseMap();
             CreateMap<LogInViewModel, LogInAppUserDto>().ReverseMap();
