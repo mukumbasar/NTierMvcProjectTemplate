@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MUK.NTierMvcProjectTemplate.Dtos.Concrete;
 using MUK.NTierMvcProjectTemplate.Entities.Concrete;
+using MUK.NTierMvcProjectTemplate.Entities.Concretes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,7 @@ namespace MUK.NTierMvcProjectTemplate.BL.Mappings
         public BLModelProfile()
         {
             CreateMap<AppUser, CreateAppUserDto>().ReverseMap();
+            CreateMap<Thing, ThingDto>().ReverseMap();
         }
     }
 }
