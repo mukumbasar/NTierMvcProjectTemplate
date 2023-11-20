@@ -20,7 +20,7 @@ namespace MUK.NTierMvcProjectTemplate.DAL.IdentityConfigurations
 			if (password!.ToLower().Contains("12345"))
 			{
 
-				errors.Add(new() { Code = "Password", Description = "şifre çok basit" });
+				errors.Add(new() { Code = "Password", Description = "şifre 12345 içeremez." });
 			}
 
 			if (errors.Any())

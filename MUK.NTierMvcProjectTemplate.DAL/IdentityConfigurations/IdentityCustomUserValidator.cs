@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using MUK.NTierMvcProjectTemplate.DAL.Contexts;
 using MUK.NTierMvcProjectTemplate.Entities.Concrete;
 using System;
 using System.Collections.Generic;
@@ -10,7 +12,14 @@ namespace MUK.NTierMvcProjectTemplate.DAL.IdentityConfigurations
 {
 	public class IdentityCustomUserValidator : IUserValidator<AppUser>
 	{
-		public Task<IdentityResult> ValidateAsync(UserManager<AppUser> manager, AppUser user)
+		private readonly AppDbContext _context;
+
+        public IdentityCustomUserValidator(AppDbContext context)
+        {
+            _context = context;
+        }
+
+        public Task<IdentityResult> ValidateAsync(UserManager<AppUser> manager, AppUser user)
 		{
 			var errors = new List<IdentityError>();
 			if (user.UserName.Contains("Salak"))
@@ -21,9 +30,14 @@ namespace MUK.NTierMvcProjectTemplate.DAL.IdentityConfigurations
 			if (char.IsDigit(user.UserName[0]))
 			{
 				errors.Add(new IdentityError() { Code = "", Description = "kulllanıcı adının ilk karakteri sayıyal bir değer olmaz" });
-			}
+            }
 
-			if (errors.Any())
+            if (_context.Users.Where(u => u.Email == user.Email).Any())
+            {
+                errors.Add(new IdentityError() { Code = "", Description = "Başka bir email giriniz." });
+            }
+
+            if (errors.Any())
 			{
 				return Task.FromResult(IdentityResult.Failed(errors.ToArray()));
 			}

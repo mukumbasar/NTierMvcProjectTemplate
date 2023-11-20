@@ -1,0 +1,46 @@
+﻿﻿﻿@using Microsoft.AspNetCore.Identity
+@using MUK.NTierMvcProjectTemplate.Entities.Concrete;
+@inject SignInManager<AppUser> SignInManager
+@inject UserManager<AppUser> UserManager
+
+@model ThingViewModel
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <div class="row">
+        <div class="col-md-8 mb-3">
+            <form asp-action="Add" method="post">
+                <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
+                <div class="mb-3">
+                    <label asp-for="Name" class="form-label"></label>
+                    <input asp-for="Name" class="form-control">
+                    <span asp-validation-for="Name"></span>
+                </div>
+                <button type="submit" class="btn btn-primary">Add Item</button>
+            </form>
+        </div>
+    </div>
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in ViewBag.Things)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Name</td>
+                @if (SignInManager.IsSignedIn(User))
+                {
+                    <td> <a class="text-danger" asp-route-id="@item.Id" asp-action="Delete">Delete</a></td>
+                    <td> <a class="text-danger" asp-route-id="@item.Id" asp-action="Edit">Edit</a></td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>

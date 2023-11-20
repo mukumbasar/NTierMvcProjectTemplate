@@ -71,7 +71,7 @@ namespace MUK.NTierMvcProjectTemplate.Web.Controllers
 
                 if(result.IsSuccess)
                 {
-                    return RedirectToAction("Index","Home");
+                    return RedirectToAction("Manage","Thing");
                 }
                 
                 ViewBag.LoginMessage = result.Message;

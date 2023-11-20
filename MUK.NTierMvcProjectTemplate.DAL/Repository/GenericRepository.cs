@@ -16,52 +16,54 @@ namespace MUK.NTierMvcProjectTemplate.DAL.Repository
 	{
 
 		private readonly AppDbContext _context;
+		private readonly DbSet<T> _dbSet;
 
 		public GenericRepository(AppDbContext context)
 		{
 			_context = context;
+			_dbSet = context.Set<T>();
 		}
 
 		public void Add(T entity)
 		{
-			_context.Set<T>().Add(entity);
+			_dbSet.Add(entity);
 		}
 
 		public void Delete(T entity)
 		{
-			_context.Set<T>().Remove(entity);
+            _dbSet.Remove(entity);
 		}
 
 		public T? Get(System.Linq.Expressions.Expression<Func<T, bool>> filter)
 		{
-			return _context.Set<T>().Where(filter).FirstOrDefault();
+			return _dbSet.Where(filter).FirstOrDefault();
 		}
 
 		public T? Get(object id)
 		{
-			return _context.Set<T>().Find(id);
+			return _dbSet.Find(id);
 		}
 
-		public List<T> GetAll(bool asnoTracking = true)
+		public List<T> GetAll(bool noTracking = true)
 		{
-			return asnoTracking ?
-					 _context.Set<T>().ToList() :
-					 _context.Set<T>().AsNoTracking().ToList();
+			return noTracking ?
+                     _dbSet.AsNoTracking().ToList() :
+                     _dbSet.ToList();
 		}
 
 		public List<T> GetAll(System.Linq.Expressions.Expression<Func<T, bool>> filter)
 		{
-			return _context.Set<T>().Where(filter).ToList();
+			return _dbSet.Where(filter).ToList();
 		}
 
 		public IQueryable<T> GetQueryable()
 		{
-			return _context.Set<T>().AsQueryable<T>();
+			return _dbSet.AsQueryable<T>();
 		}
 
 		public void Update(T entity)
 		{
-			_context.Update(entity);
+            _dbSet.Update(entity);
 		}
 	}
 }

@@ -63,7 +63,14 @@ namespace MUK.NTierMvcProjectTemplate.BL.Managers
 			 x.Description
 			 ).ToList();
 
-			return Response.Failure("Kayıt alma gerçekleştirilemedi.");
+			string errors = string.Empty;
+
+			foreach (var error in errorList)
+			{
+				errors += error + "\n";
+            }
+
+			return Response.Failure(errors);
 		}
 		public async Task<Response> ActivateEmailAsync(string userId, string token)
 		{

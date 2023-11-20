@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MUK.NTierMvcProjectTemplate.Dtos;
 using MUK.NTierMvcProjectTemplate.Dtos.Concrete;
+using MUK.NTierMvcProjectTemplate.Entities.Concretes;
 using MUK.NTierMvcProjectTemplate.Web.Models;
 
 namespace MUK.NTierMvcProjectTemplate.Web.Mappings
@@ -11,6 +12,7 @@ namespace MUK.NTierMvcProjectTemplate.Web.Mappings
         {
             CreateMap<RegisterViewModel, CreateAppUserDto>().ReverseMap();
             CreateMap<LogInViewModel, LogInAppUserDto>().ReverseMap();
+            CreateMap<ThingViewModel, ThingDto>().ReverseMap();
         }
     }
 }

@@ -10,9 +10,9 @@ namespace MUK.NTierMvcProjectTemplate.BL.Base
 {
 	public interface IService<CreateDto, UpdateDto, ListDto, T>
 		where T : class, IEntity
-		where CreateDto : class, ICreateDto
-		where UpdateDto : class, IUpdateDto
-		where ListDto : class, IListDto
+		//where CreateDto : class, ICreateDto
+		//where UpdateDto : class, IUpdateDto
+		//where ListDto : class, IListDto
 	{
 		void Add(CreateDto dto);
 		void Update(UpdateDto dto);

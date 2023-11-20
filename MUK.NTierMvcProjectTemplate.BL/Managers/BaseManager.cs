@@ -10,6 +10,8 @@ using MUK.NTierMvcProjectTemplate.Dtos.Base;
 using AutoMapper;
 using MUK.NTierMvcProjectTemplate.DAL.Abstract;
 using MUK.NTierMvcProjectTemplate.DAL.UnitOfWork;
+using Microsoft.EntityFrameworkCore;
+using MUK.NTierMvcProjectTemplate.Entities.Concretes;
 
 namespace MUK.NTierMvcProjectTemplate.BL.Managers
 {
@@ -57,7 +59,7 @@ namespace MUK.NTierMvcProjectTemplate.BL.Managers
         {
             try
             {
-                var entities = _uow.GetRepository<T>().GetAll();
+                var entities = _uow.GetRepository<T>().GetAll(true);
                 var dtos = _mapper.Map<List<TDto>>(entities);
                 return Response<IEnumerable<TDto>>.Success(dtos, "Acquirement was successful.");
             }

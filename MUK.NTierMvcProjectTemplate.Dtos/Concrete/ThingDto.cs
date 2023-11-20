@@ -9,6 +9,7 @@ namespace MUK.NTierMvcProjectTemplate.Dtos.Concrete
 {
     public class ThingDto : IDto
     {
+        public int Id { get; set; }
         public string Name { get; set; }
         public string AppUserId { get; set; } = null!;
     }
