@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.WebUtilities;
 using MUK.NTierMvcProjectTemplate.BL.RequestResponse;
 using MUK.NTierMvcProjectTemplate.BL.Services;
 using MUK.NTierMvcProjectTemplate.Dtos.Concrete;
-using MUK.NTierMvcProjectTemplate.Entities.Concrete;
+using MUK.NTierMvcProjectTemplate.Entities.Concretes;
 using System;
 using System.Collections.Generic;
 using System.Linq;

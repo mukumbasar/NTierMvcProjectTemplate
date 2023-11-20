@@ -11,9 +11,9 @@ using System.Threading.Tasks;
 
 namespace MUK.NTierMvcProjectTemplate.BL.Managers
 {
-    public class ThingManager : BaseManager<Thing, ThingDto>, IThingService
+    public class MakaleManager : BaseManager<Makale, MakaleDto>, IMakaleService
     {
-        public ThingManager(IMapper mapper, IUow uow) : base(mapper, uow)
+        public MakaleManager(IMapper mapper, IUow uow) : base(mapper, uow)
         {
 
         }

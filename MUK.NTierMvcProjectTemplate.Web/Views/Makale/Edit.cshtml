@@ -1,0 +1,30 @@
+﻿@model MakaleViewModel
+
+<div class="row">
+    <div class="col-md-8 mb-3">
+        <form asp-action="Edit" method="post">
+            <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
+            <div class="mb-3">
+                <label asp-for="Id" class="form-label"></label>
+                <input asp-for="Id" class="form-control-plaintext" value="@Model.Id" readonly>
+                <span asp-validation-for="Id"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Baslik" class="form-label"></label>
+                <input asp-for="Baslik" class="form-control">
+                <span asp-validation-for="Baslik"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="İcerik" class="form-label"></label>
+                <input asp-for="İcerik" class="form-control">
+                <span asp-validation-for="İcerik"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="KonuId" class="form-label"></label>
+                <select asp-for="KonuId" class="form-control" asp-items="@ViewBag.Konular"></select>
+                <span asp-validation-for="KonuId"></span>
+            </div>
+            <button type="submit" class="btn btn-primary">Update</button>
+        </form>
+    </div>
+</div>

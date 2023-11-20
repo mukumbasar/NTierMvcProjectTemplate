@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using MUK.NTierMvcProjectTemplate.DAL.Contexts;
-using MUK.NTierMvcProjectTemplate.Entities.Concrete;
+using MUK.NTierMvcProjectTemplate.Entities.Concretes;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MUK.NTierMvcProjectTemplate.DAL.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20231119191555_mig1")]
-    partial class mig1
+    [Migration("20231120132055_mig5")]
+    partial class mig5
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -130,7 +130,7 @@ namespace MUK.NTierMvcProjectTemplate.DAL.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("MUK.NTierMvcProjectTemplate.Entities.Concrete.AppRole", b =>
+            modelBuilder.Entity("MUK.NTierMvcProjectTemplate.Entities.Concretes.AppRole", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
@@ -157,7 +157,7 @@ namespace MUK.NTierMvcProjectTemplate.DAL.Migrations
                     b.ToTable("AspNetRoles", (string)null);
                 });
 
-            modelBuilder.Entity("MUK.NTierMvcProjectTemplate.Entities.Concrete.AppUser", b =>
+            modelBuilder.Entity("MUK.NTierMvcProjectTemplate.Entities.Concretes.AppUser", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
@@ -167,6 +167,10 @@ namespace MUK.NTierMvcProjectTemplate.DAL.Migrations
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
@@ -206,6 +210,9 @@ namespace MUK.NTierMvcProjectTemplate.DAL.Migrations
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
 
+                    b.Property<string>("PhotoPath")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
 
@@ -233,7 +240,41 @@ namespace MUK.NTierMvcProjectTemplate.DAL.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
-            modelBuilder.Entity("MUK.NTierMvcProjectTemplate.Entities.Concretes.Thing", b =>
+            modelBuilder.Entity("MUK.NTierMvcProjectTemplate.Entities.Concretes.Konu", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Ad")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Konular");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Ad = "Bilim"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Ad = "Spor"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Ad = "Siyaset"
+                        });
+                });
+
+            modelBuilder.Entity("MUK.NTierMvcProjectTemplate.Entities.Concretes.Makale", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -245,7 +286,23 @@ namespace MUK.NTierMvcProjectTemplate.DAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("Baslik")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("KonuId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("OkumaSuresi")
+                        .HasColumnType("int");
+
+                    b.Property<int>("OkunmaSayisi")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("OlusturulmaTarihi")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("İcerik")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -253,12 +310,14 @@ namespace MUK.NTierMvcProjectTemplate.DAL.Migrations
 
                     b.HasIndex("AppUserId");
 
-                    b.ToTable("Thing");
+                    b.HasIndex("KonuId");
+
+                    b.ToTable("Makaleler");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
-                    b.HasOne("MUK.NTierMvcProjectTemplate.Entities.Concrete.AppRole", null)
+                    b.HasOne("MUK.NTierMvcProjectTemplate.Entities.Concretes.AppRole", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -267,7 +326,7 @@ namespace MUK.NTierMvcProjectTemplate.DAL.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("MUK.NTierMvcProjectTemplate.Entities.Concrete.AppUser", null)
+                    b.HasOne("MUK.NTierMvcProjectTemplate.Entities.Concretes.AppUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -276,7 +335,7 @@ namespace MUK.NTierMvcProjectTemplate.DAL.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("MUK.NTierMvcProjectTemplate.Entities.Concrete.AppUser", null)
+                    b.HasOne("MUK.NTierMvcProjectTemplate.Entities.Concretes.AppUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -285,13 +344,13 @@ namespace MUK.NTierMvcProjectTemplate.DAL.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
                 {
-                    b.HasOne("MUK.NTierMvcProjectTemplate.Entities.Concrete.AppRole", null)
+                    b.HasOne("MUK.NTierMvcProjectTemplate.Entities.Concretes.AppRole", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("MUK.NTierMvcProjectTemplate.Entities.Concrete.AppUser", null)
+                    b.HasOne("MUK.NTierMvcProjectTemplate.Entities.Concretes.AppUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -300,27 +359,40 @@ namespace MUK.NTierMvcProjectTemplate.DAL.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("MUK.NTierMvcProjectTemplate.Entities.Concrete.AppUser", null)
+                    b.HasOne("MUK.NTierMvcProjectTemplate.Entities.Concretes.AppUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("MUK.NTierMvcProjectTemplate.Entities.Concretes.Thing", b =>
+            modelBuilder.Entity("MUK.NTierMvcProjectTemplate.Entities.Concretes.Makale", b =>
                 {
-                    b.HasOne("MUK.NTierMvcProjectTemplate.Entities.Concrete.AppUser", "AppUser")
-                        .WithMany("Things")
+                    b.HasOne("MUK.NTierMvcProjectTemplate.Entities.Concretes.AppUser", "AppUser")
+                        .WithMany("Makaleler")
                         .HasForeignKey("AppUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("MUK.NTierMvcProjectTemplate.Entities.Concretes.Konu", "Konu")
+                        .WithMany("Makaleler")
+                        .HasForeignKey("KonuId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("AppUser");
+
+                    b.Navigation("Konu");
                 });
 
-            modelBuilder.Entity("MUK.NTierMvcProjectTemplate.Entities.Concrete.AppUser", b =>
+            modelBuilder.Entity("MUK.NTierMvcProjectTemplate.Entities.Concretes.AppUser", b =>
                 {
-                    b.Navigation("Things");
+                    b.Navigation("Makaleler");
+                });
+
+            modelBuilder.Entity("MUK.NTierMvcProjectTemplate.Entities.Concretes.Konu", b =>
+                {
+                    b.Navigation("Makaleler");
                 });
 #pragma warning restore 612, 618
         }

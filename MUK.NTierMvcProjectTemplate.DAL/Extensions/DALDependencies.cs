@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using MUK.NTierMvcProjectTemplate.DAL.Abstract;
 using MUK.NTierMvcProjectTemplate.DAL.Contexts;
-using MUK.NTierMvcProjectTemplate.Entities.Concrete;
+using MUK.NTierMvcProjectTemplate.Entities.Concretes;
 using MUK.NTierMvcProjectTemplate.DAL.IdentityConfigurations;
 using MUK.NTierMvcProjectTemplate.DAL.UnitOfWork;
 using Microsoft.AspNetCore.Identity;

@@ -2,7 +2,26 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+@model List<MakaleViewModel>
+
+<div class="text-center mb-5">
+    <h1 class="display-4">Merhabalar! Aşağıda gördüğünüz yazıları yazmak için üye olabilirsiniz!</h1>
+    <p> <a href="https://localhost:7293/Account/Register/">ÜYE OL!</a>.</p>
+</div>
+
+<div class="row">
+    <div class="col-sm-6">
+        <h2> BLOGLAR </h2>
+        @foreach (var item in Model)
+        {
+            <div class="card">
+                <div class="card-body">
+                    <h1 class="card-title">@item.Baslik</h1>
+                    <h5>Okunma Sayısı: @item.OkunmaSayisi | Okuma Süresi: @item.OkumaSuresi</h5>
+                    <p class="card-text">@item.İcerik</p>
+                    <a class="btn btn-primary" asp-controller="Makale" asp-action="Oku" asp-route-id="@item.Id">Oku</a>
+                </div>
+            </div>
+        }
+    </div>
 </div>

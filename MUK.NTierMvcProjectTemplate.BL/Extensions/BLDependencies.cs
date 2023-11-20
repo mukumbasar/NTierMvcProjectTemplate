@@ -21,7 +21,8 @@ namespace MUK.NTierMvcProjectTemplate.BL.Extensions
             #region Custom Services
             services.AddScoped<IEmailService, EmailManager>();
 			services.AddScoped<IAccountService, AccountManager>();
-			services.AddScoped<IThingService ,ThingManager>();
+			services.AddScoped<IMakaleService ,MakaleManager>();
+			services.AddScoped<IKonuService ,KonuManager>();
 			#endregion
 		}
 	}
