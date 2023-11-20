@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MUK.NTierMvcProjectTemplate.Dtos.AppUserDtos
+namespace MUK.NTierMvcProjectTemplate.Dtos.Concrete
 {
-	public class CreateAppUserDto : ICreateDto
+	public class CreateAppUserDto : IDto
 	{
 		public string UserName { get; set; } = null!;
 		public string Name { get; set; } = null!;

@@ -1,6 +1,8 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using MUK.NTierMvcProjectTemplate.BL.Managers;
 using MUK.NTierMvcProjectTemplate.BL.Services;
+using MUK.NTierMvcProjectTemplate.Dtos.Concrete;
+using MUK.NTierMvcProjectTemplate.Entities.Concretes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +21,7 @@ namespace MUK.NTierMvcProjectTemplate.BL.Extensions
             #region Custom Services
             services.AddScoped<IEmailService, EmailManager>();
 			services.AddScoped<IAccountService, AccountManager>();
+			services.AddScoped<IThingService ,ThingManager>();
 			#endregion
 		}
 	}

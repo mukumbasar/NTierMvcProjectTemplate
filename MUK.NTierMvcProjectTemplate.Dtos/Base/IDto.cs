@@ -6,15 +6,7 @@ using System.Threading.Tasks;
 
 namespace MUK.NTierMvcProjectTemplate.Dtos.Base
 {
-	public interface ICreateDto
-	{
-
-	}
-	public interface IListDto
-	{
-
-	}
-	public interface IUpdateDto
+	public interface IDto
 	{
 
 	}

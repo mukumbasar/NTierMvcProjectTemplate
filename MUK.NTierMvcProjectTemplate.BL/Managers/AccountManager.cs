@@ -1,8 +1,9 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.WebUtilities;
+using MUK.NTierMvcProjectTemplate.BL.RequestResponse;
 using MUK.NTierMvcProjectTemplate.BL.Services;
-using MUK.NTierMvcProjectTemplate.Dtos.AppUserDtos;
+using MUK.NTierMvcProjectTemplate.Dtos.Concrete;
 using MUK.NTierMvcProjectTemplate.Entities.Concrete;
 using System;
 using System.Collections.Generic;
@@ -28,7 +29,7 @@ namespace MUK.NTierMvcProjectTemplate.BL.Managers
 			_mailService = mailService;
 		}
 
-		public async ValueTask<(bool, List<string>)> RegisterAsync(CreateAppUserDto dto)
+		public async Task<Response> RegisterAsync(CreateAppUserDto dto)
 		{
 			var user = _mapper.Map<AppUser>(dto);
 
@@ -55,16 +56,16 @@ namespace MUK.NTierMvcProjectTemplate.BL.Managers
 
 				_mailService.SendMail(user.Email, "Email Confirm", html);
 
-				return (true, new List<string>());
+				return Response.Success();
 			}
 
 			var errorList = result.Errors.Select(x =>
 			 x.Description
 			 ).ToList();
 
-			return (false, errorList);
+			return Response.Failure("Kayıt alma gerçekleştirilemedi.");
 		}
-		public async ValueTask<string> ActivateEmailAsync(string userId, string token)
+		public async Task<Response> ActivateEmailAsync(string userId, string token)
 		{
             var codeDecodedBytes = WebEncoders.Base64UrlDecode(token);
             var codeDecoded = Encoding.UTF8.GetString(codeDecodedBytes);
@@ -75,11 +76,11 @@ namespace MUK.NTierMvcProjectTemplate.BL.Managers
 
             if (result.Succeeded)
             {
-				return "Aktivasyon başarılı.";
+				return Response.Success("Aktivasyon başarılı.");
             }
-			return "Aktivasyon başarısız.";
+			return Response.Failure("Aktivasyon başarısız.");
         }
-		public async ValueTask<(bool, string)> LogInAsync(LogInAppUserDto dto)
+		public async Task<Response> LogInAsync(LogInAppUserDto dto)
 		{
 			try
 			{
@@ -94,7 +95,7 @@ namespace MUK.NTierMvcProjectTemplate.BL.Managers
 					await _userManager.ResetAccessFailedCountAsync(user);
 					await _userManager.SetLockoutEndDateAsync(user, null);
 
-					return (true, "Giriş başarılı.");
+					return Response.Success();
 				}
 
 				if(result.IsLockedOut)
@@ -102,20 +103,22 @@ namespace MUK.NTierMvcProjectTemplate.BL.Managers
                     var lockoutEndUtc = await _userManager.GetLockoutEndDateAsync(user);
                     var timeLeft = lockoutEndUtc.Value - DateTime.UtcNow;
 
-                    return (false, $"Giriş başarısız. Lütfen {timeLeft.Minutes} dakika sonra tekrar deneyiniz.");
+                    return Response.Failure($"Giriş başarısız. Lütfen {timeLeft.Minutes} dakika sonra tekrar deneyiniz.");
                 }
 
-				return (false, "Giriş başarısız.");
+				return Response.Failure("Giriş başarısız.");
 			}
 			catch
 			{
-				return (false, "Email ya da parola yanlış girildi.");
+				return Response.Failure("Email ya da parola yanlış girildi.");
 			}
 		}
 		public async void SignOutAsync()
 		{
 			await _signInManager.SignOutAsync();
 		}
+		
+		//Helpers
         private string EmailComfirmLinkGenerator(string userId, string token)
 		{
 			var link = "https://localhost:7293/Account/EmailActivation";

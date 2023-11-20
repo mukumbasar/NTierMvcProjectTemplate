@@ -1,4 +1,5 @@
-﻿using MUK.NTierMvcProjectTemplate.Dtos.AppUserDtos;
+﻿using MUK.NTierMvcProjectTemplate.Dtos.Concrete;
+using MUK.NTierMvcProjectTemplate.BL.RequestResponse;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,13 +8,11 @@ using System.Threading.Tasks;
 
 namespace MUK.NTierMvcProjectTemplate.BL.Services
 {
-	public interface IAccountService
+    public interface IAccountService
 	{
-		ValueTask<(bool, List<string>)> RegisterAsync(CreateAppUserDto dto);
-		ValueTask<(bool, string)> LogInAsync(LogInAppUserDto dto);
-		ValueTask<string> ActivateEmailAsync(string userId, string token);
-
+		Task<Response> RegisterAsync(CreateAppUserDto dto);
+		Task<Response> LogInAsync(LogInAppUserDto dto);
+		Task<Response> ActivateEmailAsync(string userId, string token);
         void SignOutAsync();
-
     }
 }

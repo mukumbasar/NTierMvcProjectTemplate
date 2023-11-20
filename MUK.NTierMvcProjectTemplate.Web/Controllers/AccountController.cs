@@ -4,7 +4,7 @@ using MUK.NTierMvcProjectTemplate.BL.Services;
 using System.Diagnostics;
 using System.Security.Cryptography;
 using AutoMapper;
-using MUK.NTierMvcProjectTemplate.Dtos.AppUserDtos;
+using MUK.NTierMvcProjectTemplate.Dtos.Concrete;
 using Microsoft.AspNetCore.Identity;
 using MUK.NTierMvcProjectTemplate.BL.Managers;
 
@@ -36,11 +36,11 @@ namespace MUK.NTierMvcProjectTemplate.Web.Controllers
                 var dto = _mapper.Map<CreateAppUserDto>(vm);
                 var result = await _accountService.RegisterAsync(dto);
 
-                if (result.Item1)
+                if (result.IsSuccess)
                 {
                     return RedirectToAction("LogIn");
                 }
-                ViewBag.RegisterError = result.Item2;
+                ViewBag.RegisterError = result.Message;
             }
             
             return View(vm);
@@ -49,7 +49,9 @@ namespace MUK.NTierMvcProjectTemplate.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> EmailActivation(string userId, string token)
         {
-            ViewBag.LoginMessage = await _accountService.ActivateEmailAsync(userId, token);
+            var result = await _accountService.ActivateEmailAsync(userId, token);
+
+            ViewBag.LoginMessage = result.Message;
 
             return View("LogIn");
         }
@@ -67,12 +69,12 @@ namespace MUK.NTierMvcProjectTemplate.Web.Controllers
                 var dto = _mapper.Map<LogInAppUserDto>(wm);
                 var result = await _accountService.LogInAsync(dto);
 
-                if(result.Item1)
+                if(result.IsSuccess)
                 {
                     return RedirectToAction("Index","Home");
                 }
                 
-                ViewBag.LoginMessage = result.Item2;
+                ViewBag.LoginMessage = result.Message;
                 return View(wm);
             }
             return View(wm);

@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using MUK.NTierMvcProjectTemplate.Dtos.AppUserDtos;
+using MUK.NTierMvcProjectTemplate.Dtos.Concrete;
 using MUK.NTierMvcProjectTemplate.Entities.Concrete;
 using System;
 using System.Collections.Generic;

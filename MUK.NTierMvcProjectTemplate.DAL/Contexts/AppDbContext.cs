@@ -4,6 +4,8 @@ using MUK.NTierMvcProjectTemplate.Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Emit;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -18,7 +20,8 @@ namespace MUK.NTierMvcProjectTemplate.DAL.Contexts
 
 		protected override void OnModelCreating(ModelBuilder builder)
 		{
-			base.OnModelCreating(builder);
+            builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+            base.OnModelCreating(builder);
 		}
 	}
 }

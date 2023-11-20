@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using MUK.NTierMvcProjectTemplate.Dtos;
-using MUK.NTierMvcProjectTemplate.Dtos.AppUserDtos;
+using MUK.NTierMvcProjectTemplate.Dtos.Concrete;
 using MUK.NTierMvcProjectTemplate.Web.Models;
 
 namespace MUK.NTierMvcProjectTemplate.Web.Mappings
