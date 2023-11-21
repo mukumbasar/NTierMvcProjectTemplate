@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MUK.NTierMvcProjectTemplate.BL.Services
 {
-    public interface IThingService : IBaseService<Thing, ThingDto>
+    public interface IKonuService : IBaseService<Konu, KonuDto>
     {
 
     }

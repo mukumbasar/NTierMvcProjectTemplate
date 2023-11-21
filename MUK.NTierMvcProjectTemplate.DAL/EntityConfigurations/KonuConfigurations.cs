@@ -9,14 +9,13 @@ using System.Threading.Tasks;
 
 namespace MUK.NTierMvcProjectTemplate.DAL.EntityConfigurations
 {
-	public class AppUserConfiguration : IEntityTypeConfiguration<AppUser>
-	{
-		public void Configure(EntityTypeBuilder<AppUser> builder)
-		{
-			builder.HasMany(x => x.Makaleler)
-				.WithOne(t => t.AppUser)
-				.HasForeignKey(t => t.AppUserId);
-
+    public class KonuConfiguration : IEntityTypeConfiguration<Konu>
+    {
+        public void Configure(EntityTypeBuilder<Konu> builder)
+        {
+            builder.HasMany(x => x.Makaleler)
+                .WithOne(m => m.Konu)
+                .HasForeignKey(m => m.KonuId);
         }
-	}
+    }
 }

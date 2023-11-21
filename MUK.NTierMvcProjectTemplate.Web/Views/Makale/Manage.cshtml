@@ -1,9 +1,9 @@
 ﻿﻿﻿@using Microsoft.AspNetCore.Identity
-@using MUK.NTierMvcProjectTemplate.Entities.Concrete;
+@using MUK.NTierMvcProjectTemplate.Entities.Concretes;
 @inject SignInManager<AppUser> SignInManager
 @inject UserManager<AppUser> UserManager
 
-@model ThingViewModel
+@model MakaleViewModel
 
 @if (SignInManager.IsSignedIn(User))
 {
@@ -12,9 +12,19 @@
             <form asp-action="Add" method="post">
                 <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
                 <div class="mb-3">
-                    <label asp-for="Name" class="form-label"></label>
-                    <input asp-for="Name" class="form-control">
-                    <span asp-validation-for="Name"></span>
+                    <label asp-for="Baslik" class="form-label"></label>
+                    <input asp-for="Baslik" class="form-control">
+                    <span asp-validation-for="Baslik"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="İcerik" class="form-label"></label>
+                    <input asp-for="İcerik" class="form-control">
+                    <span asp-validation-for="İcerik"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="KonuId" class="form-label"></label>
+                    <select asp-for="KonuId" class="form-control" asp-items="@ViewBag.Konular"></select>
+                    <span asp-validation-for="KonuId"></span>
                 </div>
                 <button type="submit" class="btn btn-primary">Add Item</button>
             </form>
@@ -30,11 +40,11 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in ViewBag.Things)
+        @foreach (var item in ViewBag.Bloglar)
         {
             <tr>
                 <td>@item.Id</td>
-                <td>@item.Name</td>
+                <td>@item.Baslik</td>
                 @if (SignInManager.IsSignedIn(User))
                 {
                     <td> <a class="text-danger" asp-route-id="@item.Id" asp-action="Delete">Delete</a></td>

@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace MUK.NTierMvcProjectTemplate.DAL.Migrations
 {
-    public partial class mig1 : Migration
+    public partial class Mig1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -30,6 +30,8 @@ namespace MUK.NTierMvcProjectTemplate.DAL.Migrations
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Surname = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PhotoPath = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     IsBanned = table.Column<bool>(type: "bit", nullable: false),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -49,6 +51,19 @@ namespace MUK.NTierMvcProjectTemplate.DAL.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Konular",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Ad = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Konular", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -158,21 +173,32 @@ namespace MUK.NTierMvcProjectTemplate.DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Thing",
+                name: "Makaleler",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AppUserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                    Baslik = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    İcerik = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    OkunmaSayisi = table.Column<int>(type: "int", nullable: false),
+                    OkumaSuresi = table.Column<int>(type: "int", nullable: false),
+                    OlusturulmaTarihi = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    AppUserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    KonuId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Thing", x => x.Id);
+                    table.PrimaryKey("PK_Makaleler", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Thing_AspNetUsers_AppUserId",
+                        name: "FK_Makaleler_AspNetUsers_AppUserId",
                         column: x => x.AppUserId,
                         principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Makaleler_Konular_KonuId",
+                        column: x => x.KonuId,
+                        principalTable: "Konular",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -217,9 +243,14 @@ namespace MUK.NTierMvcProjectTemplate.DAL.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Thing_AppUserId",
-                table: "Thing",
+                name: "IX_Makaleler_AppUserId",
+                table: "Makaleler",
                 column: "AppUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Makaleler_KonuId",
+                table: "Makaleler",
+                column: "KonuId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -240,13 +271,16 @@ namespace MUK.NTierMvcProjectTemplate.DAL.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Thing");
+                name: "Makaleler");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Konular");
         }
     }
 }

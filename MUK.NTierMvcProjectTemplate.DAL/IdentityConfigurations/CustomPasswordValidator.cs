@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using MUK.NTierMvcProjectTemplate.Entities.Concrete;
+using MUK.NTierMvcProjectTemplate.Entities.Concretes;
 using System;
 using System.Collections.Generic;
 using System.Linq;

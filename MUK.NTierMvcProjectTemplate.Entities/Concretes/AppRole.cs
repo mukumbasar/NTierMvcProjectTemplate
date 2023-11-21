@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using MUK.NTierMvcProjectTemplate.Entities.Abstract;
 
-namespace MUK.NTierMvcProjectTemplate.Entities.Concrete
+namespace MUK.NTierMvcProjectTemplate.Entities.Concretes
 {
 	public class AppRole : IdentityRole, IEntity
 	{

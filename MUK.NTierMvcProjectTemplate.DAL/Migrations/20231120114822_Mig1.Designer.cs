@@ -4,6 +4,7 @@ using MUK.NTierMvcProjectTemplate.DAL.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MUK.NTierMvcProjectTemplate.DAL.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231120114822_Mig1")]
+    partial class Mig1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -209,6 +211,7 @@ namespace MUK.NTierMvcProjectTemplate.DAL.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("PhotoPath")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SecurityStamp")
@@ -253,23 +256,6 @@ namespace MUK.NTierMvcProjectTemplate.DAL.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Konular");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Ad = "Bilim"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Ad = "Spor"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Ad = "Siyaset"
-                        });
                 });
 
             modelBuilder.Entity("MUK.NTierMvcProjectTemplate.Entities.Concretes.Makale", b =>

@@ -1,5 +1,4 @@
 ﻿using MUK.NTierMvcProjectTemplate.Entities.Abstract;
-using MUK.NTierMvcProjectTemplate.Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,11 +7,10 @@ using System.Threading.Tasks;
 
 namespace MUK.NTierMvcProjectTemplate.Entities.Concretes
 {
-    public class Thing : IEntity
+    public class Konu : IEntity
     {
         public int Id { get; set; }
-        public string Name { get; set; }
-        public string AppUserId { get; set; } = null!;
-        public AppUser AppUser { get; set; } = null!;
+        public string Ad { get; set; }
+        public List<Makale> Makaleler {  get; set; }
     }
 }

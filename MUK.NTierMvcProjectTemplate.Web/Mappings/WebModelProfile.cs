@@ -12,7 +12,8 @@ namespace MUK.NTierMvcProjectTemplate.Web.Mappings
         {
             CreateMap<RegisterViewModel, CreateAppUserDto>().ReverseMap();
             CreateMap<LogInViewModel, LogInAppUserDto>().ReverseMap();
-            CreateMap<ThingViewModel, ThingDto>().ReverseMap();
+            CreateMap<MakaleViewModel, MakaleDto>().ReverseMap();
+            CreateMap<KonuViewModel, KonuDto>().ReverseMap();
         }
     }
 }
